@@ -21,6 +21,11 @@ How it gets there, without changing any answer:
 - Word counting is done by hand instead of `/\S+/g`.
 - Template rendering pushes into one output array per render instead of
   concatenating a string per node, and reuses one scope object per loop.
+- v2: inline rendering works on ranges (no copies for emphasis, strong or link
+  text) with a fast path for text holding no Markdown construct; word counting
+  runs once over the joined body; page cards and link resolutions are reused
+  instead of recomputed; the block lexer dispatches on the first character
+  without a helper call per test.
 
 Verified byte-identical to the reference on the practice set and on 120
 generator-drawn cases plus 64 hand-built edge cases (front matter, Markdown,
